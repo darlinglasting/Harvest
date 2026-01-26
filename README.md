@@ -23,6 +23,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/darlinglasting/dumper
 
 <div align="center">
 
-@darlinglasting
+[Discord](https://discord.com/users/1463519370993991836)
+[Telegram](https://t.me/deardarling)
 
 </div>
