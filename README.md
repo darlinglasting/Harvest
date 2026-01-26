@@ -20,6 +20,7 @@ If you want something added, fixed, or anything else, feel free to DM me.
 ```luau
 loadstring(game:HttpGet("https://raw.githubusercontent.com/darlinglasting/dumper/refs/heads/main/main.lua"))()
 ```
+
 <div align="center">
 
 @darlinglasting
