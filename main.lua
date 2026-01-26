@@ -16,9 +16,9 @@ local function dump(instance, path, counts)
 	if counts[name] > 1 then name = name .. counts[name] end
 	
 	local classname = instance.ClassName;
-	local isscript = classname == "LocalScript" or classname == "Script" or classname == "ModuleScript";
-	local isremote = classname == "RemoteEvent" or classname == "RemoteFunction" or classname == "BindableEvent" or classname == "BindableFunction";
-	if isscript then
+	local script = classname == "LocalScript" or classname == "Script" or classname == "ModuleScript";
+	local remote = classname == "RemoteEvent" or classname == "RemoteFunction" or classname == "BindableEvent" or classname == "BindableFunction";
+	if script then
 		local source;
 		local s, r = pcall(function() return instance.Source end);
 		if s and r and r ~= "" then source = r end
@@ -28,11 +28,20 @@ local function dump(instance, path, counts)
 		end
 		
 		if source then
+			local fulname = instance:GetFullName();
+			local parts = fulname:split(".");
+			local pathLine = "game:GetService(\"" .. parts[1] .. "\")";
+			for i = 2, #parts do
+				pathLine = pathLine .. "." .. parts[i];
+			end
+
+			source = "-- " .. pathLine .. "\n\n" .. source;
+
 			folder(path);
 			writefile(path .. name .. ".lua", source);
 			task.wait();
 		end
-	elseif isremote then
+	elseif remote then
 		folder(path);
 		local method = "FireServer";
 		if classname == "RemoteFunction" then method = "InvokeServer" end
@@ -52,7 +61,7 @@ local function dump(instance, path, counts)
 	if #children == 0 then return end
 	local childcounts = {};
 	local nextpath = path .. name .. "/";
-	if isscript or isremote then nextpath = path .. name .. " children/" end
+	if script or remote then nextpath = path .. name .. " children/" end
 	for _, child in pairs(children) do
 		dump(child, nextpath, childcounts);
 	end
