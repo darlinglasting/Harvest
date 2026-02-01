@@ -67,10 +67,23 @@ local function dump(instance, path, counts)
 	end
 end
 
-for _, service in pairs({game:GetService("ReplicatedFirst"), game:GetService("ReplicatedStorage"), game:GetService("Players"), game:GetService("StarterPlayer")}) do
-	local rootpath = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name:gsub("[^%w%s%-]", ""):gsub("%s+", " "):gsub("%s+$", "") .. "@dumped/" .. service.Name .. "/";
+for _, service in pairs({
+	game:GetService("ReplicatedFirst"),
+	game:GetService("ReplicatedStorage"),
+	game:GetService("Players"),
+	game:GetService("StarterPlayer")
+}) do
+	local rootpath =
+		game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+			:gsub("[^%w%s%-]", "")
+			:gsub("%s+", " ")
+			:gsub("%s+$", "")
+		.. "@dumped/" .. service.Name .. "/";
+
 	local rootcounts = {};
 	for _, child in pairs(service:GetChildren()) do
 		dump(child, rootpath, rootcounts);
 	end
 end
+
+print("dumped")
