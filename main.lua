@@ -1,7 +1,14 @@
 local startTime = tick()
+local folders, checked = {}, {}
+
+local function folder(folderPath)
+    if not folders[folderPath] then
+        makefolder(folderPath)
+        folders[folderPath] = true
+    end
+end
 
 local function dump(instance, path, counts)
-    local folders, checked = {}, {}
     local scripts = {LocalScript = true, Script = true, ModuleScript = true}
     local remotes = {RemoteEvent = true, RemoteFunction = true, BindableEvent = true, BindableFunction = true}
     local methods = {RemoteFunction = "InvokeServer", BindableEvent = "Fire", BindableFunction = "Invoke"}
