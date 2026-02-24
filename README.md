@@ -1,6 +1,6 @@
 <div align="center">
 
-# **DUMPER**
+# **Harvest**
 
 ![Luau](https://img.shields.io/badge/luau-Roblox-blue?logo=roblox&logoColor=white)
 ![Platform](https://img.shields.io/badge/platform-Roblox-informational?logo=roblox&logoColor=white)
@@ -9,15 +9,13 @@
 
 ---
 
-## What is Dumper?
+Harvest grabs all scripts and remotes within a game and write them to your workspace so you can read them more easily and bypass anytype of anti-dex.
 
-Dumper is a simple script that grabs all scripts and remotes in a game and writes them to your workspace for you too read and use.
-Scripts will not decompile if you do not have a decompiler. If your executor’s decompiler is poor, it may cause significant lag in larger games. If you find a fix to this issue, please DM me.
-
+Scripts will not decompile if you do not have a decompiler, and if your executor’s decompiler is not good, it will cause lag in larger games. If you find a fix for this issue, please apply it.
 If you want something added, fixed, or anything else, feel free to DM me.
 
 ```luau
-loadstring(game:HttpGet("https://raw.githubusercontent.com/darlinglasting/dumper/refs/heads/main/main.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/darlinglasting/Harvest/refs/heads/main/main.lua"))()
 ```
 
 <div align="center">
